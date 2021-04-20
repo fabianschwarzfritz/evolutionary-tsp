@@ -337,21 +337,9 @@ function test() {
  * ***************** sample data *****************
  */
 
-/**
- * Sample set of cities we use for more data.
- */
-function sample() {
-  const evolutionsCount = 1000;
-
-  const predefined = JSON.parse(`[{"x":6,"y":10},{"x":11,"y":13},{"x":6,"y":13},{"x":4,"y":14},{"x":18,"y":6},{"x":15,"y":10},{"x":12,"y":16},{"x":11,"y":19},{"x":11,"y":0},{"x":16,"y":6}]`);
-  const sample = [];
-  for(let i = 0; i < predefined.length; i++) {
-    const city = new City(predefined[i].x, predefined[i].y);
-    sample.push(city);
-  }
-
+function evolution(sample, evolutionsCount, poolSize) {
   const population = new Population();
-  population.random(10, sample);
+  population.random(poolSize, sample);
 
   for(let i = 0; i < evolutionsCount; i++) {
     console.log(`\nEvolution number ${i}`);
@@ -361,11 +349,41 @@ function sample() {
 }
 
 /**
+ * Sample set of cities we use for more data.
+ */
+function predefinedSample() {
+  const predefined = JSON.parse(`[{"x":6,"y":10},{"x":11,"y":13},{"x":6,"y":13},{"x":4,"y":14},{"x":18,"y":6},{"x":15,"y":10},{"x":12,"y":16},{"x":11,"y":19},{"x":11,"y":0},{"x":16,"y":6}]`);
+
+  const sample = [];
+  for(let i = 0; i < predefined.length; i++) {
+    const city = new City(predefined[i].x, predefined[i].y);
+    sample.push(city);
+  }
+  const evolutionsCount = 1000;
+  const poolSize = 10;
+
+  evolution(sample, evolutionsCount, poolSize);
+}
+
+/**
+ * Larger randomly generated set of cities.
+ */
+function generatedSample() {
+  const gen = new CitiesGenerator();
+  const sample = gen.randomCities(/*number of Cities */ 100, /* max wigth*/ 10000);
+  const evolutionsCount = 100;
+  const poolSize = 10;
+
+  evolution(sample, evolutionsCount, poolSize);
+}
+
+/**
  * ***************** Main program *****************
  */
 function main() {
   test();
-  sample();
+  predefinedSample();
+  generatedSample();
 }
 main();
 
