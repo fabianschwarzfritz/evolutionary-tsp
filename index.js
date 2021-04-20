@@ -48,7 +48,10 @@ class City {
  * Helper class to generate a number of random cities.
  */
 class CitiesGenerator {
-  randomCities(count, max) {
+  randomCities(options) {
+    const count = options.numberOfCities || 10;
+    const max = options.maxCoordinate || 100;
+
     const result = [];
     for(let i = 0; i < count; i++) {
       const city = new City();
@@ -370,7 +373,7 @@ function predefinedSample() {
  */
 function generatedSample() {
   const gen = new CitiesGenerator();
-  const sample = gen.randomCities(/*number of Cities */ 100, /* max wigth*/ 10000);
+  const sample = gen.randomCities({ numberOfCities: 100, maxCoordinate: 10000});
   const evolutionsCount = 100;
   const poolSize = 10;
 
