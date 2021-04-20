@@ -1,14 +1,15 @@
 /**
- * Helper test function because we're too lazy to
- * add external dependencies of test runners now
+ * Simple implementation of a Genetic Algorithm, solving
+ * the Travelling Salesman Problem (TSP).
+ *
+ * It's implemented in JavaScript, running on NodeJS, without any
+ * external dependencies. Pure focus on the algorithm.
+ * The program a helper function for testing ('assert' function),
+ * and a test that is always executed before the program is run.
+ * I know it's not how it's supposed to be done, but it's for the
+ * sake of simplicity and the focus on the actual problem.
  */
-function assert(actual, expected, message) {
-    if (actual === expected) {
-      console.log(`test ok`);
-    } else {
-        throw new Error(message || `Assertion failed.\n Actual: ${actual}\nExpected: ${expected}`);
-    }
-}
+
 
 /**
  * Represents one city that the traveller visits
@@ -290,6 +291,23 @@ class Population {
 }
 
 /**
+ * ***************** Test coding *****************
+ */
+
+/**
+ * Helper test function so that we can assert statement
+ * write test coding to verify certain behavior.
+ */
+function assert(actual, expected, message) {
+    if (actual === expected) {
+      console.log(`test ok`);
+    } else {
+        throw new Error(message || `Assertion failed.\n Actual: ${actual}\nExpected: ${expected}`);
+    }
+}
+
+
+/**
  * Test coding to verify the basic calculations.
  */
 function test() {
@@ -315,6 +333,10 @@ function test() {
   assert(individual.route.length, 4);
 }
 test();
+
+/**
+ * ***************** Main program *****************
+ */
 
 /**
  * Sample set of cities we use for more data.
