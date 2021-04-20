@@ -286,7 +286,7 @@ class Population {
     }
     const best = this.population[0].distance|| 0;
     const worst = this.population[this.population.length - 1].distance || 0;
-    console.log(`Average population fitness: ${sum / this.population.length}, best: ${best.toFixed(4)}, worst: ${worst.toFixed(4)}}`);
+    console.log(`Average population fitness: ${sum / this.population.length}, best: ${best.toFixed(4)}, worst: ${worst.toFixed(4)}`);
   }
 }
 
