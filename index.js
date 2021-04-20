@@ -332,16 +332,17 @@ function test() {
   individual.mutate();
   assert(individual.route.length, 4);
 }
-test();
 
 /**
- * ***************** Main program *****************
+ * ***************** sample data *****************
  */
 
 /**
  * Sample set of cities we use for more data.
  */
 function sample() {
+  const evolutionsCount = 1000;
+
   const predefined = JSON.parse(`[{"x":6,"y":10},{"x":11,"y":13},{"x":6,"y":13},{"x":4,"y":14},{"x":18,"y":6},{"x":15,"y":10},{"x":12,"y":16},{"x":11,"y":19},{"x":11,"y":0},{"x":16,"y":6}]`);
   const sample = [];
   for(let i = 0; i < predefined.length; i++) {
@@ -352,12 +353,19 @@ function sample() {
   const population = new Population();
   population.random(10, sample);
 
-  const times = 1000;
-  for(let i = 0; i < times; i++) {
-    console.log(`\nPopulation number ${i}`);
+  for(let i = 0; i < evolutionsCount; i++) {
+    console.log(`\nEvolution number ${i}`);
     population.next();
   }
   console.log(`Best route found: ${population.fittest().toString()}`);
 }
-sample();
+
+/**
+ * ***************** Main program *****************
+ */
+function main() {
+  test();
+  sample();
+}
+main();
 
