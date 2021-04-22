@@ -14,23 +14,11 @@ const City = require("./City");
 const CitiesGenerator = require("./CitiesGenerator");
 const Individual = require("./Individual");
 const Population = require("./Population");
+const { assert } = require("./testutil");
 
 /**
  * ***************** Test coding *****************
  */
-
-/**
- * Helper test function so that we can assert statement
- * write test coding to verify certain behavior.
- */
-function assert(actual, expected, message) {
-    if (actual === expected) {
-      console.log(`test ok`);
-    } else {
-        throw new Error(message || `Assertion failed.\n Actual: ${actual}\nExpected: ${expected}`);
-    }
-}
-
 
 /**
  * Test coding to verify the basic calculations.
