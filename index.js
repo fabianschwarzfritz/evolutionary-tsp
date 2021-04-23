@@ -15,6 +15,7 @@ const CitiesGenerator = require("./CitiesGenerator");
 const Individual = require("./Individual");
 const Population = require("./Population");
 const { assert } = require("./testutil");
+const args = require("./programargs");
 
 /**
  * ***************** Test coding *****************
@@ -68,7 +69,7 @@ function evolution(sample, evolutionsCount, poolSize) {
 /**
  * Sample set of cities we use for more data.
  */
-function predefinedSample() {
+function predefinedSample(evolutions, pool) {
   const predefined = JSON.parse(`[{"x":6,"y":10},{"x":11,"y":13},{"x":6,"y":13},{"x":4,"y":14},{"x":18,"y":6},{"x":15,"y":10},{"x":12,"y":16},{"x":11,"y":19},{"x":11,"y":0},{"x":16,"y":6}]`);
 
   const sample = [];
@@ -76,31 +77,40 @@ function predefinedSample() {
     const city = new City(predefined[i].x, predefined[i].y);
     sample.push(city);
   }
-  const evolutionsCount = 1000;
-  const poolSize = 10;
 
-  evolution(sample, evolutionsCount, poolSize);
+  evolution(sample, evolutions, pool);
 }
 
 /**
  * Larger randomly generated set of cities.
  */
-function generatedSample() {
+function generatedSample(evolutions, pool) {
   const gen = new CitiesGenerator();
-  const sample = gen.randomCities({ numberOfCities: 100, maxCoordinate: 10000});
-  const evolutionsCount = 100;
-  const poolSize = 10;
+  const sample = gen.randomCities({ numberOfCities: 80, maxCoordinate: 100 });
 
-  evolution(sample, evolutionsCount, poolSize);
+  evolution(sample, evolutions, pool);
 }
 
 /**
  * ***************** Main program *****************
  */
-function main() {
+
+console.log("\n==================== TSP solution using evolutionary algorithms ====================");
+console.log("  * Read more on https://github.com/fabianschwarzfritz/evolutionary-tsp");
+console.log("  * Development in progress. Contribute ! :)\n");
+
+const options = args();
+console.log("  * Program runs with options:");
+console.log(options);
+console.log("  * and this is the result:");
+
+if(options.text) {
   test();
-  predefinedSample();
-  generatedSample();
 }
-main();
+if(options.predefined) {
+  predefinedSample(options.evolutions, options.pool);
+}
+if(options.generated) {
+  generatedSample(options.evolutions, options.pool);
+}
 
