@@ -58,7 +58,11 @@ function evolution(sample, evolutionsCount, poolSize) {
     console.log(`\nEvolution number ${i}`);
     population.next();
   }
-  console.log(`Best route found: ${population.fittest().toString()}`);
+  const fittest = population.fittest();
+  console.log(`Best route found: ${fittest.toString()}`);
+  console.log(`JSON`);
+  console.log(JSON.stringify(fittest));
+  console.log(`JSON`);
 }
 
 /**
