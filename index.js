@@ -14,6 +14,7 @@ const City = require("./City");
 const CitiesGenerator = require("./CitiesGenerator");
 const Individual = require("./Individual");
 const Population = require("./Population");
+const Graph = require("./Graph");
 const { assert } = require("./testutil");
 const args = require("./programargs");
 
@@ -51,6 +52,10 @@ function test() {
  * ***************** sample data *****************
  */
 
+/**
+ * Generates a population from the sample,
+ * iterates over them and returns the fittest individual
+ */
 function evolution(sample, evolutionsCount, poolSize) {
   const population = new Population();
   population.random(poolSize, sample);
@@ -64,6 +69,7 @@ function evolution(sample, evolutionsCount, poolSize) {
   console.log(`JSON`);
   console.log(JSON.stringify(fittest));
   console.log(`JSON`);
+  return fittest;
 }
 
 /**
@@ -78,7 +84,7 @@ function predefinedSample(evolutions, pool) {
     sample.push(city);
   }
 
-  evolution(sample, evolutions, pool);
+  return evolution(sample, evolutions, pool);
 }
 
 /**
@@ -88,7 +94,7 @@ function generatedSample(evolutions, pool) {
   const gen = new CitiesGenerator();
   const sample = gen.randomCities({ numberOfCities: 80, maxCoordinate: 100 });
 
-  evolution(sample, evolutions, pool);
+  return evolution(sample, evolutions, pool);
 }
 
 /**
@@ -108,7 +114,14 @@ if(options.text) {
   test();
 }
 if(options.predefined) {
-  predefinedSample(options.evolutions, options.pool);
+  console.log("predefined");
+  const route = predefinedSample(options.evolutions, options.pool);
+  console.log("checks for graph");
+  if(options.graph) {
+    console.log("Generates a graph");
+    const graph = new Graph(options.graph, route);
+    graph.generate();
+  }
 }
 if(options.generated) {
   generatedSample(options.evolutions, options.pool);

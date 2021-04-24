@@ -6,6 +6,8 @@ function parameters() {
     predefined: false,
     evolutions: 1000,
     pool: 10,
+    /*More options, optional:*/
+    /*graph: "generated.svg",*/
   };
 
   const args = process.argv.slice(2);
@@ -13,30 +15,30 @@ function parameters() {
     const arg = args[i];
     const argvalue = args[i+1];
 
-    // Options remove the next arguments
+    console.log("checkig option", arg, argvalue);
+
+    // Skip one iteration to not reat
+    // the argument as the option type.
     function nextOption() {
       i++;
-    }
-    // Options with parameters remove the next two arguments
-    function nextArgumentOption() {
-      i = i + 2;
     }
 
     if("--test" === arg) {
       options.test = true;
-      nextOption();
     } else if("--generated" === arg) {
       options.generated = true;
-      nextOption();
+      options.predefined = false;
     } else if("--predefined" === arg) {
       options.predefined = true;
-      nextOption();
+      options.generated = false;
     } else if("--evolutions" === arg) {
       options.evolutions = parseInt(argvalue);
-      nextArgumentOption();
+      nextOption();
     } else if("--pool" === arg) {
       options.pool = parseInt(argvalue);
-      nextArgumentOption();
+      nextOption();
+    } else if("--graph" === arg) {
+      options.graph = argvalue;
     }
   }
   return options;
