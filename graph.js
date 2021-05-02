@@ -7,8 +7,10 @@ class Graph {
   }
 
   generate() {
-    // TODO calculate factor
-    const factor = 1;
+    const xmax = Math.max(...this.route.map((c) => c.x));
+    const ymax = Math.max(...this.route.map((c) => c.y));
+    const factor = Math.max(xmax, ymax);
+
     let svgpoints = "";
     for(let point of this.route) {
       console.log(this.route);
