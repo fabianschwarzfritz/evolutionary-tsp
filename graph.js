@@ -23,7 +23,7 @@ class Graph {
     const template = `
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 250 400">
       <polyline points='${svgpoints}'
-       style='fill:none;stroke:black;stroke-width:3' />
+       style='fill:none;stroke:black;stroke-width:1' />
     </svg>
     `;
 
