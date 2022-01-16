@@ -4,10 +4,6 @@
  *
  * It's implemented in JavaScript, running on NodeJS, without any
  * external dependencies. Pure focus on the algorithm.
- * The program a helper function for testing ('assert' function),
- * and a test that is always executed before the program is run.
- * I know it's not how it's supposed to be done, but it's for the
- * sake of simplicity and the focus on the actual problem.
  */
 
 const City = require("./City");
